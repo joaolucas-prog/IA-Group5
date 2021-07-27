@@ -2,15 +2,16 @@
 
 <!DOCTYPE html>
 <html lang="pt-br">
-<meta charset = "utf-8">
+
 <head>
+  <meta charset = "UTF-8">
 	<title>ECOMP-SGCE</title>
 	<link rel = "stylesheet" href="style.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
 
-<body style="background-repeat: no-repeat, repeat; background-image: url(img/aa.jpg)">
+<body>
 	<div class="header">
   <a href="#default" class="logo"><font face="Arial" >Secretaria da controladoria geral do estado</font></a>
   <div class="header-right">
@@ -31,9 +32,19 @@
 			Servindo o servidor público
 			<br>para servir à sociedade.</h1>
 			<br>
+			<form id="myForm">
+				<input type="file" id="csvFile" accept=".csv" />
+				<br>
+				<br>
+				<input type="text" id="id" placeholder="ID da pergunta">
+				<br />
+				<br>
+				<input type="submit" value="Submit"/>
+			  </form>
 			<br>
-			<BR>
-			<iframe src="https://www.youtube.com/embed/XFDM1ip5HdU" width="680" height="450" allowfullscreen="allowfullscreen"></iframe>
+			<br>
+			  	<b><p id='f1' class='unity'></p> <p id ='f2'></p><br><p id='f3' class='response'></p></b>
+			<br>
 		</div>
 	</center>
 
@@ -43,6 +54,64 @@
 <footer class="footer">
 <p>Copyright 2021 ECOMP em parceria com a Secretaria da controladoria geral do estado. All rights reserved.</p>
 </footer>
+  <script>
+    const myForm = document.getElementById("myForm");
+    const csvFile = document.getElementById("csvFile");
+
+    function csvToArray(str, delimiter = ";") {
+
+      // slice from start of text to the first \n index
+      // use split to create an array from string by delimiter
+      const headers = str.slice(0, str.indexOf("\n")).split(delimiter);
+
+      // slice from \n index + 1 to the end of the text
+      // use split to create an array of each csv value row
+      const rows = str.slice(str.indexOf("\n") + 1).split("\n");
+
+      // Map the rows
+      // split values from each row into an array
+      // use headers.reduce to create an object
+      // object properties derived from headers:values
+      // the object passed as an element of the array
+      const arr = rows.map(function (row) {
+        const values = row.split(delimiter);
+        const el = headers.reduce(function (object, header, index) {
+          object[header] = values[index];
+          return object;
+        }, {});
+        return el;
+      });
+
+      // return the array
+      return arr;
+    }
+
+    myForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const input = csvFile.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        const text = e.target.result;
+        const data = csvToArray(text);
+        //var result = data.filter(data => data.cod_pergunta = '11789');
+        //var result = data.filter(function(o) {return o.cod_pergunta === 11789})
+		var idPergunta = document.getElementById('id').value;
+		console.log(document.getElementById('id').value);
+        var perguntaFiltrada = data.find(x => x.id_pergunta === idPergunta);
+		//var perguntaFiltrada = data.filter(x => x.id_pergunta === '1031');
+        //var numbers = result.map(function(o) { return o.resposta; });
+
+		
+		document.getElementById('f1').innerHTML="Unidade gestora: " + perguntaFiltrada.unidade_gestora;
+        document.getElementById('f2').innerHTML="Assunto: " + perguntaFiltrada.assunto;
+		document.getElementById('f3').innerHTML="Resposta: " + perguntaFiltrada.resposta_publica;
+
+      };
+      
+      reader.readAsText(input);
+    });
+  </script>
 </body>
 
 </html>
