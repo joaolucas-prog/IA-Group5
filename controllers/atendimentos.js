@@ -1,35 +1,62 @@
-const Atendimento = require('../models/atendimento')
-
+const Adiciona = require('../models/adiciona')
+const Altera = require('../models/altera')
+const AlteraPalavra = require('../models/palavrachave')
+const RespostaSimilar = require('../models/respostasimilar')
+const Assunto = require('../models/assunto')
+const Deleta = require('../models/deleta')
+const Lista = require('../models/lista')
+const BuscaPorId = require('../models/buscaPorId')
 
 module.exports = app =>{
-    app.get('/atendimento', (req, res) => {
-        Atendimento.lista(res)
+    app.get('/orientacao', (req, res) => {
+        Lista.lista(res)
     })
 
-    app.get('/atendimento/:id', (req, res) => {
+    app.get('/orientacao/:id', (req, res) => {
         const id = parseInt(req.params.id)
 
-        Atendimento.buscaPorId(id, res)
+        BuscaPorId.buscaPorId(id, res)
     })
 
-    app.post('/atendimento', (req,res) => {
+    app.post('/orientacao', (req,res) => {
         const atendimento = req.body
 
-        Atendimento.adiciona(atendimento, res)
+        Adiciona.adiciona(atendimento, res)
         
     })
 
-    app.patch('/atendimento/:id', (req,res) => {
+    app.patch('/orientacao/:id', (req,res) => {
         const id=parseInt(req.params.id)
         const valores = req.body
 
-        Atendimento.altera(id,valores, res)
+        Altera.altera(id,valores, res)
     })
 
-    app.delete('/atendimento/:id', (req,res) => {
+    app.put('/orientacao/palavra/:id', (req,res) => {
+        const id=parseInt(req.params.id)
+        const valores = req.body
+
+        AlteraPalavra.altera(id,valores, res)
+    })
+
+    app.put('/orientacao/resposta_similar/:id', (req,res) => {
+        const id=parseInt(req.params.id)
+        const valores = req.body
+
+        RespostaSimilar.altera(id,valores, res)
+    })
+
+    app.put('/orientacao/assunto/:id', (req,res) => {
+        const id=parseInt(req.params.id)
+        const valores = req.body
+
+        Assunto.altera(id,valores, res)
+    })
+
+    app.delete('/orientacao/:id', (req,res) => {
         const id = parseInt(req.params.id)
 
-        Atendimento.deleta(id,res)
+        Deleta.deleta(id,res)
     })
 }
 
