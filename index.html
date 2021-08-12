@@ -19,8 +19,8 @@
           <img src="img/logo.png" alt="logo">       
           <nav>
               <a class="button" href="#">Inicio</a>
-              <a class="button" href="#">Contato</a>
-              <a class="button" href="#">Sobre</a>
+              <a class="button" onclick=contato() href="#">Contato</a>
+              <a class="button" onclick="sobre()" href="#">Sobre</a>
           </nav>
       </div>
   </header>
@@ -96,6 +96,18 @@
         
         reader.readAsText(input);
       });
-    </script>
+      
+      function sobre() {
+        alert("Projeto dos brabo da poli");
+      }
+      
+      function contato() {
+          alert("Telefone: XXXX-XXXX");
+        }
+    </script>    
+        <footer>
+          <p>Author: Hege Refsnes</p>
+          <p><a href="mailto:hege@example.com">hege@example.com</a></p>
+        </footer>
 </body>
 </html>
