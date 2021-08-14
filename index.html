@@ -1,113 +1,140 @@
-
-
 <!DOCTYPE html>
 <html lang="UTF-8">
 <meta http-equiv="Content-Language" content="pt-br">
-<meta charset = "UTF-8">
+<meta charset="UTF-8">
+
 <head>
-  <meta charset = "UTF-8">
-	<title>ECOMP-SGCE</title>
+  <meta charset="UTF-8">
+  <title>ECOMP-SGCE</title>
   <link rel="stylesheet" href="style.css">
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
 
 <body>
   <header>
-      <div class="container">
-          <img src="img/logo.png" alt="logo">       
-          <nav>
-              <a class="button" href="#">Inicio</a>
-              <a class="button" onclick=contato() href="#">Contato</a>
-              <a class="button" onclick="sobre()" href="#">Sobre</a>
-          </nav>
-      </div>
+    <div class="container">
+      <img src="img/logo.png" alt="logo">
+      <nav>
+        <a class="button" href="#">Inicio</a>
+        <a class="button" onclick=contato() href="#">Contato</a>
+        <a class="button" onclick="sobre()" href="#">Sobre</a>
+      </nav>
+    </div>
   </header>
 
   <main>
-      <div id="grad1" class="main">
-          <div class="container">
-              <h3 class="title">Ouvidoria</h3>
-              <p class="description">Digite seu protocolo na caixa abaixo, assim, recebendo todas as informações desejadas.</p>
-              <div class="buttons">
-                  <button role="button" class="button">
-                      BOTAO EXEMPLO
-                  </button>
-                  <form id="myForm">
-                      <br>
-                      <input type="text" id="id" placeholder="ID da pergunta">
-                      <br />
-                      <br>
-                      <input type="submit" class = "button" value="Submit"/>
-                    </form>
-                    <b><p id='f1' class='unity'></p> <p id ='f2'></p><br><p id='f3' class='response'></p></b>
-              </div>
-          </div>           
+    <div id="grad1" class="main">
+      <div class="container">
+        <h3 class="title">Ouvidoria</h3>
+        <p class="description">Digite seu protocolo na caixa abaixo, assim, recebendo todas as informações desejadas.
+        </p>
+        <div class="buttons">
+          <button role="button" class="button">
+            BOTAO EXEMPLO
+          </button>
+          <form id="myForm">
+            <br>
+            <input type="text" id="id" placeholder="ID da pergunta">
+            <br />
+            <br>
+            <input type="submit" class="button" value="Submit" />
+          </form>
+          <b>
+            <p id='f1' class='unity'></p>
+            <p id='f2'></p><br>
+            <p id='f3' class='response'></p>
+          </b>
+        </div>
       </div>
+    </div>
   </main>
+  <div class="footer rodape" style="background-color: #326699;">
+    <div class="container-footer">
+      <div>
+        <div class="footer-img">
+          <a href="http://www.poli.br/"><img
+              src="http://www.ecomp.poli.br/wp-content/themes/TemaECompResponsivo/lib/img/poli.svg"
+              class="img-responsive center-block" alt="Imagem responsiva"></a>
 
-  <script src="https://kit.fontawesome.com/8753a517e4.js" crossorigin="anonymous"></script>
+          <a href="http://www.upe.br/"><img
+              src="http://www.ecomp.poli.br/wp-content/themes/TemaECompResponsivo/lib/img/upe.svg"
+              class="img-responsive center-block" alt="Imagem responsiva"></a>
+        </div>
+        <div class="footer-text">
+          <a href="https://goo.gl/maps/fzvjJhEvchE2">
+            <p>Rua Benfica, 455 - Madalena <br>
+              CEP:50720-001 <br>
+              Recife-PE</p>
+          </a>
+          <p>Telefone: 81 3184 7501<br>
+            graduacao@ecomp.poli.br
+          </p>
+          <p>Copyright © 2021 Engenharia da Computação.<br>
+            All rights reserved.<br>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
   <script>
-      //const myForm = document.getElementById("myForm");
-      //const csvFile = document.getElementById("csvFile");
-      //ler arquivo csv 
-  
-      function csvToArray(str, delimiter = ";") {
-  
-  
-        const headers = str.slice(0, str.indexOf("\n")).split(delimiter);
-  
-        const rows = str.slice(str.indexOf("\n") + 1).split("\n");
-        const arr = rows.map(function (row) {
-          const values = row.split(delimiter);
-          const el = headers.reduce(function (object, header, index) {
-            object[header] = values[index];
-            return object;
-          }, {});
-          return el;
-        });
-  
-        return arr;
-      }
-  
-      myForm.addEventListener("submit", function (e) {
-        e.preventDefault();
-        const input = csvFile.files[0];
-        const reader = new FileReader();
-  
-        reader.onload = function (e) {
-          const text = e.target.result;
-          const data = csvToArray(text);
-          //var result = data.filter(data => data.cod_pergunta = '11789');
-          //var result = data.filter(function(o) {return o.cod_pergunta === 11789})
-          var idPergunta = document.getElementById('id').value;
-          console.log(document.getElementById('id').value);
-          var perguntaFiltrada = data.find(x => x.id_pergunta === idPergunta);
-            //var perguntaFiltrada = data.filter(x => x.id_pergunta === '1031');
-          //var numbers = result.map(function(o) { return o.resposta; });
-  
-          
-          document.getElementById('f1').innerHTML="Unidade gestora: " + perguntaFiltrada.unidade_gestora;
-          document.getElementById('f2').innerHTML="Assunto: " + perguntaFiltrada.assunto;
-          document.getElementById('f3').innerHTML="Resposta: " + perguntaFiltrada.resposta_publica;
-  
-        };
-        
-        reader.readAsText(input);
+    //const myForm = document.getElementById("myForm");
+    //const csvFile = document.getElementById("csvFile");
+    //ler arquivo csv 
+
+    function csvToArray(str, delimiter = ";") {
+
+
+      const headers = str.slice(0, str.indexOf("\n")).split(delimiter);
+
+      const rows = str.slice(str.indexOf("\n") + 1).split("\n");
+      const arr = rows.map(function (row) {
+        const values = row.split(delimiter);
+        const el = headers.reduce(function (object, header, index) {
+          object[header] = values[index];
+          return object;
+        }, {});
+        return el;
       });
-      
-      function sobre() {
-        alert("Projeto dos brabo da poli");
-      }
-      
-      function contato() {
-          alert("Telefone: XXXX-XXXX");
-        }
-    </script>    
-        <footer>
-          <p>Author: Hege Refsnes</p>
-          <p><a href="mailto:hege@example.com">hege@example.com</a></p>
-        </footer>
+
+      return arr;
+    }
+
+    myForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const input = csvFile.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        const text = e.target.result;
+        const data = csvToArray(text);
+        //var result = data.filter(data => data.cod_pergunta = '11789');
+        //var result = data.filter(function(o) {return o.cod_pergunta === 11789})
+        var idPergunta = document.getElementById('id').value;
+        console.log(document.getElementById('id').value);
+        var perguntaFiltrada = data.find(x => x.id_pergunta === idPergunta);
+        //var perguntaFiltrada = data.filter(x => x.id_pergunta === '1031');
+        //var numbers = result.map(function(o) { return o.resposta; });
+
+
+        document.getElementById('f1').innerHTML = "Unidade gestora: " + perguntaFiltrada.unidade_gestora;
+        document.getElementById('f2').innerHTML = "Assunto: " + perguntaFiltrada.assunto;
+        document.getElementById('f3').innerHTML = "Resposta: " + perguntaFiltrada.resposta_publica;
+
+      };
+
+      reader.readAsText(input);
+    });
+
+    function sobre() {
+      alert("Projeto dos brabo da poli");
+    }
+
+    function contato() {
+      alert("Telefone: XXXX-XXXX");
+    }
+  </script>
 </body>
+
 </html>
