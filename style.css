@@ -95,6 +95,8 @@ header nav a{
 
 
 .main .container {
+  justify-content: center;
+  text-align: center;
   width: 70%;
 }
 
