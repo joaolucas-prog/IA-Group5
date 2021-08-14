@@ -98,10 +98,38 @@ header nav a{
   justify-content: center;
   text-align: center;
   width: 70%;
+  justify-content: center;
+  text-align: center;
 }
 
 #grad1 {
   height: 1000px;
   background-color: red; /* For browsers that do not support gradients */
   background-image: linear-gradient( rgb(255,255,255), rgb(31, 168, 228));
+}
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.container-footer {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.container-footer a {
+  color: #FFFFFF;
+}
+
+.footer-img {
+  display: inline-block;
+  justify-content: center;
+  text-align: center;
+}
+
+.footer-text {
+  display: inline-block;
 }
