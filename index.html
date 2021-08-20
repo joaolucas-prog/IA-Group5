@@ -28,18 +28,16 @@
     <div id="grad1" class="main">
       <div class="container">
         <h3 class="title">Ouvidoria</h3>
-        <p class="description">Digite seu protocolo na caixa abaixo, assim, recebendo todas as informações desejadas.
+        <p class="description">Digite seu protocolo na caixa abaixo, para receber as informações desejadas.
         </p>
-        <div class="buttons">
-          <button role="button" class="button">
-            BOTAO EXEMPLO
-          </button>
+        <div class="pergunta">
+          
+          <h1 style="color: #123994">Digite o ID da pergunta</h1>
           <form id="myForm">
-            <br>
-            <input type="text" id="id" placeholder="ID da pergunta">
-            <br />
-            <br>
-            <input type="submit" class="button" value="Submit" />
+            <input type="text" name="idPergunta" class="question" id="idPergunta" required autocomplete="off" />
+            <label for="idPergunta"><span>ID da pergunta</span></label>
+            <input class="button" type="submit" value="Procurar" />
+            </form>
           </form>
           <b>
             <p id='f1' class='unity'></p>
@@ -79,7 +77,7 @@
     </div>
   </div>
   <script>
-    //const myForm = document.getElementById("myForm");
+    const myForm = document.getElementById("myForm");
     //const csvFile = document.getElementById("csvFile");
     //ler arquivo csv 
 
@@ -100,7 +98,7 @@
 
       return arr;
     }
-
+    /*
     myForm.addEventListener("submit", function (e) {
       e.preventDefault();
       const input = csvFile.files[0];
@@ -133,7 +131,7 @@
 
     function contato() {
       alert("Telefone: XXXX-XXXX");
-    }
+    } */
   </script>
 </body>
 
