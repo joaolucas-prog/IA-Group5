@@ -11,7 +11,17 @@ conexao.connect((erro) => {
     else {
         console.log('conectado')
         Tabelas.init(conexao)
-        const app = customExpress()
+        const app = customExpress();
+            
+        app.get('/img/logo', function(request, response){
+            response.sendFile(__dirname + '/img/logo.png');
+        });
+        app.get('/style.css', function(request, response){
+            response.sendFile(__dirname + '/style.css');
+        });
+        app.get('/', (request, response) => {
+            response.sendFile(__dirname+'/index.html')
+        });
         app.listen(port, () => console.log(`App running on port ${port}.`))
     }
 })

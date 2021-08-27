@@ -8,14 +8,13 @@ const Lista = require('../models/lista')
 const BuscaPorId = require('../models/buscaPorId')
 
 module.exports = app =>{
-    app.get('/orientacao', (req, res) => {
+    
+    app.get('/orientacoes', (req, res) => {
         Lista.lista(res)
     })
-
-    app.get('/orientacao/:id', (req, res) => {
-        const id = parseInt(req.params.id)
-
-        BuscaPorId.buscaPorId(id, res)
+    app.get('/orientacao', (req, res) => {
+        const { idPergunta } = req.query;
+        BuscaPorId.buscaPorId(idPergunta, res)
     })
 
     app.post('/orientacao', (req,res) => {

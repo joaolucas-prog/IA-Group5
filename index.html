@@ -15,11 +15,11 @@
 <body>
   <header>
     <div class="container">
-      <img src="img/logo.png" alt="logo">
+      <img src="http://localhost:4000/img/logo" alt="logo">
       <nav>
         <a class="button" href="#">Inicio</a>
         <a class="button" onclick=contato() href="#">Contato</a>
-        <a class="button" onclick="sobre()" href="#">Sobre</a>
+        <a class="button" onclick=sobre() href="#">Sobre</a>
       </nav>
     </div>
   </header>
@@ -36,13 +36,13 @@
           <form id="myForm">
             <input type="text" name="idPergunta" class="question" id="idPergunta" required autocomplete="off" />
             <label for="idPergunta"><span>ID da pergunta</span></label>
-            <input class="button" type="submit" value="Procurar" />
+            <input type="button" value="Procurar" onclick="test()"/>
             </form>
           </form>
           <b>
-            <p id='f1' class='unity'></p>
+            <p id='f1'></p>
             <p id='f2'></p><br>
-            <p id='f3' class='response'></p>
+            <p id='f3'></p>
           </b>
         </div>
       </div>
@@ -78,25 +78,17 @@
   </div>
   <script>
     const myForm = document.getElementById("myForm");
-    //const csvFile = document.getElementById("csvFile");
-    //ler arquivo csv 
 
-    function csvToArray(str, delimiter = ";") {
+    function test() {
+      const noName = new XMLHttpRequest();
+      noName.onload = function() {
+        console.log(this.response);
+        const assunto = JSON.parse(this.response);
 
-
-      const headers = str.slice(0, str.indexOf("\n")).split(delimiter);
-
-      const rows = str.slice(str.indexOf("\n") + 1).split("\n");
-      const arr = rows.map(function (row) {
-        const values = row.split(delimiter);
-        const el = headers.reduce(function (object, header, index) {
-          object[header] = values[index];
-          return object;
-        }, {});
-        return el;
-      });
-
-      return arr;
+        document.getElementById('f1').innerHTML = "Unidade gestora: " + assunto.assunto;
+      }
+      noName.open('GET',"http://localhost:4000/orientacao/?idPergunta=21544");
+      noName.send();
     }
     /*
     myForm.addEventListener("submit", function (e) {
@@ -131,7 +123,7 @@
 
     function contato() {
       alert("Telefone: XXXX-XXXX");
-    } */
+    }*/
   </script>
 </body>
 
