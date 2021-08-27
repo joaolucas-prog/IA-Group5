@@ -274,3 +274,14 @@ input.question:invalid ~ input[type="submit"], textarea.question:invalid ~ input
     opacity: 1;
   }
 }
+.container-answer {
+  text-align: left;
+  display: none;
+}
+.container-answer-content {
+  margin-bottom: 7px;
+  background-color: teal;
+  border: solid rgba(14, 12, 12, 0.664) 4px;
+  padding-top: 10px;
+  padding-left: 10px;
+}

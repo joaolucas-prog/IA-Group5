@@ -39,11 +39,17 @@
             <input type="button" value="Procurar" onclick="test()"/>
             </form>
           </form>
-          <b>
-            <p id='f1'></p>
-            <p id='f2'></p><br>
-            <p id='f3'></p>
-          </b>
+            <div class="container-answer" id="container-answer">
+              <div class="container-answer-content">
+                <p id='f1'></p><br>
+              </div>
+              <div class="container-answer-content">
+                <p id='f2'></p><br>
+              </div>
+              <div class="container-answer-content">
+                <p id='f3'></p>
+              </div>
+            </div>
         </div>
       </div>
     </div>
@@ -80,15 +86,18 @@
     const myForm = document.getElementById("myForm");
 
     function test() {
-      const noName = new XMLHttpRequest();
-      noName.onload = function() {
+      const request = new XMLHttpRequest();
+      request.onload = function() {
         console.log(this.response);
         const assunto = JSON.parse(this.response);
-
-        document.getElementById('f1').innerHTML = "Unidade gestora: " + assunto.assunto;
+        document.getElementById('f1').innerHTML = "Assunto: " + assunto.assunto;
+        document.getElementById('f2').innerHTML = "Unidade gestora: " + assunto.unidade_gestora;
+        document.getElementById('f3').innerHTML = "Descrição: " + assunto.descricao_tratada;
       }
-      noName.open('GET',"http://localhost:4000/orientacao/?idPergunta=21544");
-      noName.send();
+      const id = document.getElementById("idPergunta").value;
+      request.open('GET',`http://localhost:4000/orientacao/?idPergunta=${id}`);
+      document.getElementById("container-answer").style.display = "inline-block";
+      request.send();
     }
     /*
     myForm.addEventListener("submit", function (e) {
