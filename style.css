@@ -103,7 +103,8 @@ header nav a{
 }
 
 #grad1 {
-  height: 1000px;
+  height:auto;
+  min-height:1000px;
   background-color: red; /* For browsers that do not support gradients */
   background-image: linear-gradient( rgb(255,255,255), rgb(31, 168, 228));
 }
