@@ -1,0 +1,14 @@
+.footerContainer {
+    background-color: #326699;
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+}
+
+.footerContainer a {
+    text-decoration: unset;
+}
+
+.footerContainer a:hover {
+    color: #fff!important;
+}
