@@ -6,6 +6,7 @@ const Assunto = require('../models/assunto')
 const Deleta = require('../models/deleta')
 const Lista = require('../models/lista')
 const BuscaPorId = require('../models/buscaPorId')
+const BuscaTodosAssuntos = require('../models/buscaTodosAssuntos')
 
 module.exports = app =>{
     
@@ -16,6 +17,10 @@ module.exports = app =>{
         const { idPergunta } = req.query;
         BuscaPorId.buscaPorId(idPergunta, res)
     })
+
+    app.get('/assuntos', (request, response) =>{
+        BuscaTodosAssuntos.buscaTodosAssuntos(response);
+    });
 
     app.post('/orientacao', (req,res) => {
         const atendimento = req.body

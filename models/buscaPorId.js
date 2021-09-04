@@ -2,7 +2,7 @@ const conexao = require('../infraestrutura/conexao')
 
 class BuscaPorId {
     buscaPorId(id, res) {
-        const sql = `SELECT descricao_tratada, resposta_publica, unidade_gestora, assunto FROM saladeaula WHERE codigo_pergunta=$1`;
+        const sql = `SELECT descricao_tratada, resposta_publica, unidade_gestora, assunto_sugerido FROM saladeaula WHERE codigo_pergunta=$1`;
 
         conexao.query(sql, [id], (erro, resultados) => {
             if(erro){
